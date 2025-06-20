@@ -34,7 +34,7 @@ A config file is generated at `config/teampreview.json` on first run.
 
 ## 🚀 Installation
 
-1. Download the latest `.jar` from [Releases](https://github.com/yourname/cobblemon-team-preview/releases)
+1. Download the latest `.jar` from [Releases](https://github.com/alex-ajsdev/cobblemon-team-preview/releases)
 2. Place it in your `mods/` folder alongside:
     - `Cobblemon`
     - `Fabric API`
