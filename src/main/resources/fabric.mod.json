@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "cobblemon-team-preview",
+  "version": "${version}",
+  "name": "Cobblemon Team Preview",
+  "description": "Shows a team preview GUI before pvp battles",
+  "authors": [
+    "Alex Suarez"
+  ],
+  "license": "MIT License",
+  "icon": "assets/example/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "net.ajsdev.cobblemonteampreview.CobblemonTeamPreview"
+      }
+    ]
+  },
+  "depends": {
+    "minecraft": "1.21.1",
+    "fabric-language-kotlin": ">=1.12.3+kotlin.2.0.21",
+    "cobblemon": ">=1.6.0",
+    "sgui": "1.6.1+1.21.1"
+  }
+}
