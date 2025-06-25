@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "net.ajsdev"
-version = "1.0.0"
+version = "1.0.1"
 
 val minecraft_version = "1.21.1"
 val loader_version = "0.16.14"
