@@ -18,7 +18,7 @@ object CobblemonTeamPreview : ModInitializer {
     override fun onInitialize() {
         Scheduler.init()
         TeamPreviewSettings.load()
-        CobblemonEvents.BATTLE_STARTED_PRE.subscribe(Priority.NORMAL, PreBattleStarted::handle)
+        CobblemonEvents.BATTLE_STARTED_PRE.subscribe(Priority.LOWEST, PreBattleStarted::handle)
         registerTeamPreviewCommand()
     }
 

@@ -8,13 +8,24 @@ import com.cobblemon.mod.common.util.getPlayer
 import net.ajsdev.cobblemonteampreview.config.TeamPreviewSettings
 import net.ajsdev.cobblemonteampreview.gui.TeamPreviewGui
 import net.ajsdev.cobblemonteampreview.logic.TeamPreviewSession
+import net.ajsdev.cobblemonteampreview.logic.TeamPreviewTracker
 import net.minecraft.ChatFormatting
 import net.minecraft.network.chat.Component
+import java.util.*
 
 object PreBattleStarted {
+
+
+
     fun handle(event: BattleStartedPreEvent) {
         val battle = event.battle
         if (battle.format.battleType.actorsPerSide != 1 || !battle.isPvP) return
+
+        val playerUUIDs = battle.playerUUIDs.toSet()
+        if (TeamPreviewTracker.hasPreviewed(playerUUIDs)) {
+            TeamPreviewTracker.clearPreviewed(playerUUIDs)
+            return
+        }
 
         val skipForAll = !TeamPreviewSettings.config.enabled
         val skipForPlayer = battle.playerUUIDs.any { TeamPreviewSettings.isDisabledFor(it) }
@@ -23,11 +34,11 @@ object PreBattleStarted {
 
         event.reason = Component.literal("Starting team preview...").withStyle(ChatFormatting.WHITE)
         event.cancel()
-        beginTeamPreview(battle)
+        beginTeamPreview(battle, playerUUIDs)
     }
 
 
-    private fun beginTeamPreview(battle: PokemonBattle) {
+    private fun beginTeamPreview(battle: PokemonBattle, playerUUIDs: Set<UUID>) {
         val session = TeamPreviewSession(battle)
 
         for (actor in battle.actors) {
@@ -56,7 +67,8 @@ object PreBattleStarted {
 
         session.subscribe {
             if (session.isReady()) {
-                BattleRegistry.startBattle(battle.format, battle.side1, battle.side2, false)
+                TeamPreviewTracker.markPreviewed(playerUUIDs)
+                BattleRegistry.startBattle(battle.format, battle.side1, battle.side2, true)
             }
         }
     }

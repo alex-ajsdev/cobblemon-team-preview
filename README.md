@@ -1,4 +1,4 @@
-# Cobblemon Team Preview
+# [Cobblemon Team Preview](https://github.com/alex-ajsdev/cobblemon-team-preview/)
 
 A server-side Fabric mod for Minecraft **1.21.1** that adds a customizable **Team Preview** UI before Cobblemon battles begin. Inspired by competitive formats like Pokémon Showdown, this mod enhances PvP by letting players view their opponent’s team and choose the order of their Pokémon before a battle begins.
 
